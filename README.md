@@ -8,7 +8,8 @@ Makefile helpers for GO.
 ├── .project
 │   ├── yaml.sh             # yaml parser
 │   ├── config_var.sh       # extract yaml config variable
-│   └── go-project.mk       # include into your Makefile
+│   └── go-project.mk       # include into your Makefile using $GOPATH
+│   └── gomod-project.mk    # include into your Makefile using go mod
 ├── .VERSION                # version of your project
 ├── config.yml              # config
 └── Makefile                # Makefile
@@ -19,19 +20,15 @@ Makefile helpers for GO.
 - Copy `.project` folder to your project's root folder
 - Create `.VERSION` file in the root of your project
 - Create `config.yml` file in the root of your project
-- Create `Makefile` and `include .project/go-project.mk`
+- Create `Makefile`
+    - `include .project/go-project.mk` with projects using $GOPATH
+    - `include .project/gomod-project.mk` with projects using `go mod`
 
 ## Common commands
 
 - `make vars` - print make variables
-- `make upgrade-project.mk` - upgrade project.mk files"
 - `make env` - pring GO environment
 - `make generate` - generate GO files
-- `make testenv` - pring GO test environment
-- `make clean` - clean produced files
-- `make purge` - clean and purge `.tools` and `vendor` folders
-- `make gopath` - create a symbolic link to project's PROJ_GOPATH, if it's not cloned in GOPATH.
-- `make showupdates` - show updates in `.tools` and `vendor` folders
 - `make lspkg` - list GO packeges in the current project
 - `make bench` - GO test with bench
 - `make fmt` - run `go fmt` on project files
